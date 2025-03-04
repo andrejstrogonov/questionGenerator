@@ -1,38 +1,26 @@
 package org.andrejstrogonov;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.andrejstrogonov.model.QuestionService;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
-/**
- * Unit test for simple App.
- */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@SpringBootTest
+public class AppTest{
+    @Autowired
+    private QuestionService questionService;
+
+    @Test
+    public void fetchQuestionsBySubjectTest() {
+        questionService.addQuestion("subject", null);
+        assertEquals(1, questionService.addQuestion("subject", null).size());
+        // Use the questionService to fetch questions by subject
+        // ...
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
-    }
 }
+
+
