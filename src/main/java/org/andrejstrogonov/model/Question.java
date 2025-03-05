@@ -21,6 +21,9 @@ public class Question {
         this.question = question;
         this.answer = answer;
     }
+    public static Question from(Long id, String question, String answer) {
+        return new Question(id, question, answer);
+    }
 
     public String getQuestion() {
         return question;
