@@ -3,6 +3,7 @@ package org.andrejstrogonov.model;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -13,13 +14,14 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 import java.util.HashMap;
 
+
 @Configuration
 @PropertySource({ "classpath:pagination-sorting-db.properties" })
-@EnableJpaRepositories(basePackages = "org.andrejstrogonov.model", entityManagerFactoryRef = "productEntityManager", transactionManagerRef = "productTransactionManager")
+@EnableJpaRepositories(basePackages = "org.andrejstrogonov.model", entityManagerFactoryRef = "dataEntityManager", transactionManagerRef = "productTransactionManager")
 public class DataSourceConfig {
-    private final org.springframework.core.env.Environment env;
+    private final Environment env;
 
-    public DataSourceConfig(org.springframework.core.env.Environment env) {
+    public DataSourceConfig(Environment env) {
         this.env = env;
     }
 
@@ -45,12 +47,11 @@ public class DataSourceConfig {
         dataSource.setUrl("jdbc:h2:mem:testdb");
         dataSource.setDriverClassName("org.h2.Driver");
         dataSource.setUsername("sa");
-        dataSource.setPassword("");
+        dataSource.setPassword("password");
         return dataSource;
     }
-
     @Bean
-    public PlatformTransactionManager productTransactionManager() {
+    public PlatformTransactionManager questionTransactionManager() {
         final JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(dataEntityManager().getObject());
         return transactionManager;
