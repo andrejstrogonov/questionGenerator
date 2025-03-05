@@ -11,7 +11,12 @@ public class Question {
     private String question;
     private String answer;
 
-    public Question(Long id, String question, String answer) {
+    public Question() {
+        super();
+    }
+
+    private Question(Long id, String question, String answer) {
+        super();
         this.id = id;
         this.question = question;
         this.answer = answer;
@@ -35,10 +40,12 @@ public class Question {
 
     @Override
     public String toString() {
-        return "Question{" +
-                "id=" + id +
-                ", question='" + question + '\'' +
-                ", answer='" + answer + '\'' +
-                '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append("Question{");
+        builder.append("id=").append(id);
+        builder.append(", question='").append(question).append('\'');
+        builder.append(", answer='").append(answer).append('\'');
+        builder.append('}');
+        return builder.toString();
     }
 }
