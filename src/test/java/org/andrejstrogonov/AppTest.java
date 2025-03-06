@@ -37,6 +37,7 @@ class AppTest {
     }
 
     @Test
+
     void fetchQuestionsBySubjectTest() {
         questionService.addQuestion("subject", null);
         assertEquals(1, questionService.addQuestion("subject", null).size());
@@ -45,6 +46,7 @@ class AppTest {
     }
 
     @Test
+
     void whenRequestingFirstPageOfSizeTwo_ThenReturnFirstPage() {
         Pageable pageRequest = PageRequest.of(0, 2);
 
@@ -58,6 +60,7 @@ class AppTest {
     }
 
     @Test
+
     void whenRequestingSecondPageOfSizeTwo_ThenReturnSecondPage() {
         Pageable pageRequest = PageRequest.of(1, 2);
 
@@ -71,6 +74,7 @@ class AppTest {
     }
 
     @Test
+
     void whenRequestingLastPage_ThenReturnLastPageWithRemData() {
         Pageable pageRequest = PageRequest.of(2, 2);
 
@@ -80,6 +84,7 @@ class AppTest {
     }
 
     @Test
+
     void whenSortingByNameAscAndPaging_ThenReturnSortedPagedResult() {
         Pageable pageRequest = PageRequest.of(0, 3, Sort.by("name"));
 
@@ -93,6 +98,7 @@ class AppTest {
     }
 
     @Test
+
     void whenSortingByPriceDescAndPaging_ThenReturnSortedPagedResult() {
         // Assuming there is a 'price' field in the Question class
         Pageable pageRequest = PageRequest.of(0, 3, Sort.by("price")
@@ -109,6 +115,7 @@ class AppTest {
     }
 
     @Test
+
     void whenSortingByPriceDescAndNameAscAndPaging_ThenReturnSortedPagedResult() {
         // Assuming there is a 'price' field in the Question class
         Pageable pageRequest = PageRequest.of(0, 5, Sort.by("price")
@@ -126,6 +133,7 @@ class AppTest {
     }
 
     @Test
+
     void whenRequestingFirstPageOfSizeTwoUsingCustomMethod_ThenReturnFirstPage() {
         Pageable pageRequest = PageRequest.of(0, 2);
 

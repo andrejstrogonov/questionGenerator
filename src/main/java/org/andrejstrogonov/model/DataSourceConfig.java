@@ -47,7 +47,7 @@ public class DataSourceConfig {
         dataSource.setUrl("jdbc:h2:mem:testdb");
         dataSource.setDriverClassName("org.h2.Driver");
         dataSource.setUsername("sa");
-        dataSource.setPassword("password");
+        dataSource.setPassword("sa");
         return dataSource;
     }
     @Bean
