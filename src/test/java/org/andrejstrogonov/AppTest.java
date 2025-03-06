@@ -14,28 +14,30 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(classes = QuestionService.class)
 @EnableTransactionManagement
-public class AppTest {
+class AppTest {
 
     @Autowired
     private QuestionService questionService;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         questionService.save(Question.from(1L, "What do you want?", "Apple"));
         questionService.save(Question.from(2L, "Who was the first president of the United States?", "George Washington"));
         questionService.save(Question.from(3L, "What is the capital of France?", "Paris"));
     }
 
     @Test
-    public void fetchQuestionsBySubjectTest() {
+    void fetchQuestionsBySubjectTest() {
         questionService.addQuestion("subject", null);
         assertEquals(1, questionService.addQuestion("subject", null).size());
         // Use the questionService to fetch questions by subject
